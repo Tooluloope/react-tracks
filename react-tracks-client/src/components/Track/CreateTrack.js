@@ -28,11 +28,21 @@ const CreateTrack = ({ classes }) => {
   const [description, setDescription] = useState('')
   const [file, setFile] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const [fileError, setFileError] = useState("")
+
+
 
 
   const handleAudioChange = e => {
     const file = e.target.files[0]
-    setFile(file)
+    const fileSizeLimit = 10000000; //10mb
+    if (file && file.size > fileSizeLimit) {
+      setFileError(`${file.name}: File size too large`)
+    } else{
+      setFileError("")
+      setFile(file)
+    }
+   
   }
 
   const handleAudioUpload= async() => {
@@ -88,7 +98,7 @@ const CreateTrack = ({ classes }) => {
             <DialogTitle>Create Track</DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Add a Title, Decription and Audio File
+                Add a Title, Decription and Audio File(10mb max)
               </DialogContentText>
               <FormControl fullWidth>
                 <TextField value={title} onChange={e => setTitle(e.target.value)}  label='Title' placeholder='Add Title' className={classes.textField} />
@@ -96,13 +106,16 @@ const CreateTrack = ({ classes }) => {
               <FormControl fullWidth>
                 <TextField  value={description} onChange={e => setDescription(e.target.value)} multiline  rows ='4' label='Description' placeholder='Add Description' className={classes.textField} />
               </FormControl>
-              <FormControl fullWidth>
+              <FormControl fullWidth error={Boolean(fileError)}>
                 <input  onChange={handleAudioChange} accept="audio/mp3, audio/wav" id='audio' type='file' className={classes.input} />
                 <label htmlFor = 'audio'>
                   <Button variant='outlined'color={file ? 'secondary' : "inherit"} component="span" className={classes.button} >
                   Audio File <LibraryMusicIcon className = {classes.icon} />
                   </Button>
                   {file && file.name}
+                  <FormHelperText>
+                    {fileError}
+                  </FormHelperText>
                 </label>
               </FormControl>
             </DialogContent>

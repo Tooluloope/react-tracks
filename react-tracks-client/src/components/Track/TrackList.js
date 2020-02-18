@@ -28,7 +28,7 @@ const TrackList = ({ classes, tracks }) =>{
               secondary = {<Link className={classes.link} 
               to={`/profile/${track.postedBy.id}`}></Link>} 
               />
-              <AudioPlayer />
+              <AudioPlayer url={track.url} />
             </ListItem>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={classes.details}>
