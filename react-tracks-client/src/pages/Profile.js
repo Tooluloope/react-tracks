@@ -13,6 +13,7 @@ import Error from "../components/Shared/Error";
 import Loading from "../components/Shared/Loading";
 import { gql } from "apollo-boost";
 import { Query } from "react-apollo";
+import format from "date-fns/format";
 
 const Profile = ({ classes }) => {
   return(
@@ -25,7 +26,10 @@ const Profile = ({ classes }) => {
             <Card className={classes.card}>
               <CardHeader avatar= {<Avatar>{data.me.username[0]}</Avatar>}
                 title = {data.me.username}
-                subheader = {`Joined ${data.me.dateJoined}`}
+                subheader = {`Joined ${format(
+                  data.me.dateJoined,
+                  "MMM Do, YYYY"
+                )}`}
                 >
               </CardHeader>
             </Card>

@@ -18,7 +18,6 @@ import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 import Error from '../Shared/Error'
 import Axios from 'axios'
-import Loading from "../Shared/Loading";
 import {GET_TRACKS_QUERY} from '../../pages/App'
 
 const CreateTrack = ({ classes }) => {
