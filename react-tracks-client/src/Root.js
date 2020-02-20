@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import withRoot from "./withRoot";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import {Query} from 'react-apollo';
@@ -10,23 +10,25 @@ import Loading from './components/Shared/Loading'
 import Error from './components/Shared/Error'
 
 
+export const UserContext = createContext()
+
 
 const Root = () =>(
     <Query query={ME_QUERY}>
         {({data, loading, error}) => {
             if(loading) return <Loading />
-            if(error) return <Error />
+            if(error) return <Error error={error} />
             const currentUser = data.me
 
             return(
                 <Router >
-                    <>
+                    <UserContext.Provider value= {currentUser}>
                         <Header user = {currentUser} />
                         <Switch>
                             <Route exact path='/' component={App} />
                             <Route path='/profile/:id' component={Profile} />
                         </Switch>
-                    </>
+                    </UserContext.Provider>
                 </Router>
             )
         }}
@@ -34,12 +36,17 @@ const Root = () =>(
 
     </Query>
 )
-const ME_QUERY = gql`
+export const ME_QUERY = gql`
 {
     me{
         username
         id
         email
+        likeSet{
+            track{
+                id
+            }
+        }
     }
 }
 `

@@ -23,7 +23,7 @@ const TrackList = ({ classes, tracks }) =>{
         <ExpansionPanel key={track.id}>
           <ExpansionPanelSummary expandIcon = {<ExpandMoreIcon />}>
             <ListItem className = {classes.root}>
-              <LikeTrack />
+              <LikeTrack trackId = {track.id} likeCount = {track.likes.length} />
               <ListItemText primaryTypographyProps={{variant:'subheading', color:'primary'}} primary={track.title} 
               secondary = {<Link className={classes.link} 
               to={`/profile/${track.postedBy.id}`}></Link>} 
@@ -35,8 +35,8 @@ const TrackList = ({ classes, tracks }) =>{
             <Typography variant='body1'>{track.description}</Typography>
           </ExpansionPanelDetails>
           <ExpansionPanelActions>
-            <UpdateTrack />
-            <DeleteTrack />
+            <UpdateTrack track = {track} />
+            <DeleteTrack  track = {track} />
           </ExpansionPanelActions>
         </ExpansionPanel>
       ))}
