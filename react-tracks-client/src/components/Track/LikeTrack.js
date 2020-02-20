@@ -9,7 +9,6 @@ import { UserContext, ME_QUERY } from "../../Root";
 
 const LikeTrack = ({ classes, trackId,likeCount }) => {
   const currentUser = useContext(UserContext)
-  console.log(likeCount, trackId)
 
   const handleDisableLikedTrack = () => {
     const userLikes = currentUser.likeSet
@@ -20,9 +19,7 @@ const LikeTrack = ({ classes, trackId,likeCount }) => {
 
     <Mutation mutation = {CREATE_LIKE_MUTATION}
       variables = {{trackId}}
-      onCompleted = {data => {
-        console.log({data})
-      }}
+      
       refetchQueries={() => [{query:ME_QUERY}]}
       >
         {createLike => (

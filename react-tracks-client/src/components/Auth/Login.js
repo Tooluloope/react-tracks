@@ -45,9 +45,7 @@ const Login = ({ classes, setNewUser }) => {
         <Mutation
           mutation={LOGIN_MUTATION}
           variables={{ username, password }}
-          onCompleted={data => {
-            console.log({ data });
-          }}
+          
         >
           {(tokenAuth, { loading, error , called, client}) => {
             return (

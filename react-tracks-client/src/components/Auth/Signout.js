@@ -10,7 +10,7 @@ const Signout = ({ classes }) => {
   const handleSignout = client => {
     localStorage.removeItem("authToken")
     client.writeData({data:{isLoggedIn: false}})
-    console.log('Signed out user', client)
+    
   }
   return (
     <ApolloConsumer>

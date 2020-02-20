@@ -77,7 +77,6 @@ const UpdateTrack = ({ classes , track}) => {
       </IconButton>
 
       <Mutation mutation={UPDATE_TRACK_MUTATION} onCompleted= {data => {
-        console.log(data)
         setSubmitting(false)
         setOpen(false)
         setTitle('')

@@ -55,7 +55,7 @@ return (
         Registers
       </Typography>
       <Mutation mutation = {REGISTER_MUTATION} onCompleted = { data => {
-          console.log(data)
+          
           setOpen(true)
       }}>
           {(createUser, {loading, error}) => {

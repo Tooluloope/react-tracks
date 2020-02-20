@@ -23,9 +23,7 @@ const DeleteTrack = ({track}) => {
   return isCurrentUser && (
     <Mutation mutation={DELETE_TRACK_MUTATION}
     variables={{trackId: track.id}}
-    onCompleted = {data => {
-      console.log(data)
-    }}
+    
     update ={handleUpdateCache}
     // refetchQueries = {() => [{query: GET_TRACKS_QUERY}]}
     >

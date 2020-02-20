@@ -80,7 +80,6 @@ const CreateTrack = ({ classes }) => {
       </Button>
 
       <Mutation mutation={CREATE_TRACK_MUTATION} onCompleted= {data => {
-        console.log(data)
         setSubmitting(false)
         setOpen(false)
         setTitle('')
